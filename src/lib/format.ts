@@ -1,3 +1,5 @@
+import { FILE_URL } from "./constants";
+
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD" });
 export function formatUSD(n: number | undefined | null): string {
   return usd.format(Number(n ?? 0));
@@ -54,7 +56,8 @@ export function stockLabel(stock: number, threshold = 5): { text: string; tone: 
 export function fileUrl(path?: string | null): string | undefined {
   if (!path) return undefined;
   if (/^https?:\/\//i.test(path)) return path;
-  return `${process.env.NEXT_PUBLIC_FILE_URL ?? "http://localhost:8080"}${path.startsWith("/") ? "" : "/"}${path}`;
+  const base = FILE_URL;
+  return `${base}${path.startsWith("/") ? "" : "/"}${path}`;
 }
 
 export function googleMapsUrl(lat: number, lng: number): string {

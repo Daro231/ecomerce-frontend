@@ -1,5 +1,9 @@
-export const API_URL = process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8080/api/v1";
-export const FILE_URL = process.env.NEXT_PUBLIC_FILE_URL ?? "http://localhost:8080";
+const isProd = process.env.NODE_ENV === "production";
+
+export const API_URL =
+  process.env.NEXT_PUBLIC_API_URL || (isProd ? "" : "http://localhost:8080/api/v1");
+export const FILE_URL =
+  process.env.NEXT_PUBLIC_FILE_URL || (isProd ? "" : "http://localhost:8080");
 export const PROMO_COUPON = process.env.NEXT_PUBLIC_PROMO_COUPON ?? "";
 export const NOMINATIM_CONTACT = process.env.NEXT_PUBLIC_NOMINATIM_CONTACT ?? "";
 
